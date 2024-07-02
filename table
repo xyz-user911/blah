@@ -1,0 +1,505 @@
+JS 
+import React, { useState, useEffect } from 'react';
+import './ManualAction.css';
+// import DeviceTable from './DeviceTable.js';
+
+const deviceData = [
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+    { ipAddress: "10.102.27.83", siteName: "Petunia", LocationID: "187262", deviceType: "Camera", ExpiresIN: "6", installatonStatus: "Successfull" },
+];
+
+function ManualActn({ deviceData }) {
+
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [rowsPerPage, setRowsPerPage] = useState(10);
+    // const [displayData, setDisplayData] = useState([]);
+    // const [searchIP, setSearchIP] = useState('');
+    // const [searchSite, setSearchSite] = useState('');
+    // const [searchLocation, setSearchLocation] = useState('');
+    // const [filterDeviceType, setFilterDeviceType] = useState('');
+    // const [filterExpiresIn, setFilterExpiresIn] = useState('');
+    // const [filterInstallStatus, setFilterInstallStatus] = useState('');
+
+    // useEffect(() => {
+    //     const filteredData = deviceData.filter(device =>
+    //         device.ipAddress.includes(searchIP) &&
+    //         device.siteName.toLowerCase().includes(searchSite.toLowerCase()) &&
+    //         device.LocationID.includes(searchLocation) &&
+    //         (filterDeviceType === '' || device.deviceType === filterDeviceType) &&
+    //         (filterExpiresIn === '' || (filterExpiresIn === '<5' ? device.ExpiresIN < 5 : device.ExpiresIN < 10)) &&
+    //         (filterInstallStatus === '' || (filterInstallStatus === 'Failed' ? device.installatonStatus === 'Failed' : device.installatonStatus === 'Successful'))
+    //     );
+    //     const indexOfLastRow = currentPage * rowsPerPage;
+    //     const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+    //     setDisplayData(filteredData.slice(indexOfFirstRow, indexOfLastRow));
+    // }, [currentPage, rowsPerPage, searchIP, searchSite, searchLocation, filterDeviceType, filterExpiresIn, filterInstallStatus]);
+
+    // const totalPages = Math.ceil(deviceData.filter(device =>
+    //     device.ipAddress.includes(searchIP) &&
+    //     device.siteName.toLowerCase().includes(searchSite.toLowerCase()) &&
+    //     device.LocationID.includes(searchLocation) &&
+    //     (filterDeviceType === '' || device.deviceType === filterDeviceType) &&
+    //     (filterExpiresIn === '' || (filterExpiresIn === '<5' ? device.ExpiresIN < 5 : device.ExpiresIN < 10)) &&
+    //     (filterInstallStatus === '' || (filterInstallStatus === 'Failed' ? device.installatonStatus === 'Failed' : device.installatonStatus === 'Successful'))
+    // ).length / rowsPerPage);
+
+    // const handleNextPage = () => {
+    //     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    // };
+
+    // const handlePreviousPage = () => {
+    //     if (currentPage > 1) setCurrentPage(currentPage - 1);
+    // };
+
+    // const handleRowsPerPageChange = (event) => {
+    //     setRowsPerPage(Number(event.target.value));
+    //     setCurrentPage(1);
+    // };
+
+    // return (
+    //     <div className="App">
+    //         <header className="App-header">
+    //             <h1>Device Data</h1>
+    //             <div>
+    //                 <label htmlFor="rowsPerPage">Rows per page: </label>
+    //                 <select id="rowsPerPage" value={rowsPerPage} onChange={handleRowsPerPageChange}>
+    //                     <option value={5}>5</option>
+    //                     <option value={10}>10</option>
+    //                     <option value={15}>15</option>
+    //                     <option value={20}>20</option>
+    //                 </select>
+    //             </div>
+    //             <table>
+    //                 <thead>
+    //                     <tr>
+    //                         <th>
+    //                             IP Address
+    //                             <br />
+    //                             <input
+    //                                 type="text"
+    //                                 value={searchIP}
+    //                                 onChange={(e) => setSearchIP(e.target.value)}
+    //                                 placeholder="Search IP"
+    //                             />
+    //                         </th>
+    //                         <th>
+    //                             Site Name
+    //                             <br />
+    //                             <input
+    //                                 type="text"
+    //                                 value={searchSite}
+    //                                 onChange={(e) => setSearchSite(e.target.value)}
+    //                                 placeholder="Search Site"
+    //                             />
+    //                         </th>
+    //                         <th>
+    //                             Location ID
+    //                             <br />
+    //                             <input
+    //                                 type="text"
+    //                                 value={searchLocation}
+    //                                 onChange={(e) => setSearchLocation(e.target.value)}
+    //                                 placeholder="Search Location"
+    //                             />
+    //                         </th>
+    //                         <th>
+    //                             Device Type
+    //                             <br />
+    //                             <select value={filterDeviceType} onChange={(e) => setFilterDeviceType(e.target.value)}>
+    //                                 <option value="">All</option>
+    //                                 <option value="Camera">Camera</option>
+    //                                 <option value="NVR Panel">NVR Panel</option>
+    //                                 <option value="Security">Security</option>
+    //                                 <option value="Alarm Panel">Alarm Panel</option>
+    //                             </select>
+    //                         </th>
+    //                         <th>
+    //                             Expires In
+    //                             <br />
+    //                             <select value={filterExpiresIn} onChange={(e) => setFilterExpiresIn(e.target.value)}>
+    //                                 <option value="">All</option>
+    //                                 <option value="<5">&lt;5</option>
+    //                                 <option value="<10">&lt;10</option>
+    //                             </select>
+    //                         </th>
+    //                         <th>
+    //                             Installation Status
+    //                             <br />
+    //                             <select value={filterInstallStatus} onChange={(e) => setFilterInstallStatus(e.target.value)}>
+    //                                 <option value="">Select All</option>
+    //                                 <option value="Failed">Select those failed to install</option>
+    //                                 <option value="Successful">Select all successful installations</option>
+    //                             </select>
+    //                         </th>
+    //                     </tr>
+    //                 </thead>
+    //                 <tbody>
+    //                     {displayData.map((device, index) => (
+    //                         <tr key={index}>
+    //                             <td>{device.ipAddress}</td>
+    //                             <td>{device.siteName}</td>
+    //                             <td>{device.LocationID}</td>
+    //                             <td>{device.deviceType}</td>
+    //                             <td>{device.ExpiresIN}</td>
+    //                             <td>{device.installatonStatus}</td>
+    //                         </tr>
+    //                     ))}
+    //                 </tbody>
+    //             </table>
+    //             <div className="pagination">
+    //                 <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+    //                     &lt;
+    //                 </button>
+    //                 <span> Page {currentPage} of {totalPages} </span>
+    //                 <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+    //                     &gt;
+    //                 </button>
+    //             </div>
+    //         </header>
+    //     </div>
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [displayData, setDisplayData] = useState([]);
+    const [searchIP, setSearchIP] = useState('');
+    const [searchSite, setSearchSite] = useState('');
+    const [searchLocation, setSearchLocation] = useState('');
+    const [filterDeviceType, setFilterDeviceType] = useState('');
+    const [filterExpiresIn, setFilterExpiresIn] = useState('');
+    const [filterInstallStatus, setFilterInstallStatus] = useState('');
+    const [selectedRows, setSelectedRows] = useState([]);
+    const [selectAll, setSelectAll] = useState(false);
+
+    useEffect(() => {
+        const filteredData = deviceData.filter(device =>
+            device.ipAddress.includes(searchIP) &&
+            device.siteName.toLowerCase().includes(searchSite.toLowerCase()) &&
+            device.LocationID.includes(searchLocation) &&
+            (filterDeviceType === '' || device.deviceType === filterDeviceType) &&
+            (filterExpiresIn === '' || (filterExpiresIn === '<5' ? device.ExpiresIN < 5 : device.ExpiresIN < 10)) &&
+            (filterInstallStatus === '' || (filterInstallStatus === 'Failed' ? device.installatonStatus === 'Failed' : device.installatonStatus === 'Successful'))
+        );
+        const indexOfLastRow = currentPage * rowsPerPage;
+        const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+        setDisplayData(filteredData.slice(indexOfFirstRow, indexOfLastRow));
+    }, [currentPage, rowsPerPage, searchIP, searchSite, searchLocation, filterDeviceType, filterExpiresIn, filterInstallStatus]);
+
+    const totalPages = Math.ceil(deviceData.filter(device =>
+        device.ipAddress.includes(searchIP) &&
+        device.siteName.toLowerCase().includes(searchSite.toLowerCase()) &&
+        device.LocationID.includes(searchLocation) &&
+        (filterDeviceType === '' || device.deviceType === filterDeviceType) &&
+        (filterExpiresIn === '' || (filterExpiresIn === '<5' ? device.ExpiresIN < 5 : device.ExpiresIN < 10)) &&
+        (filterInstallStatus === '' || (filterInstallStatus === 'Failed' ? device.installatonStatus === 'Failed' : device.installatonStatus === 'Successful'))
+    ).length / rowsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+
+    const handleRowsPerPageChange = (event) => {
+        setRowsPerPage(Number(event.target.value));
+        setCurrentPage(1);
+    };
+
+    const handleSelectRow = (id) => {
+        setSelectedRows(prev =>
+            prev.includes(id) ? prev.filter(rowId => rowId !== id) : [...prev, id]
+        );
+    };
+
+    const handleSelectAllRows = () => {
+        if (selectAll) {
+            setSelectedRows([]);
+        } else {
+            const allRowIds = displayData.map(device => device.id);
+            setSelectedRows(allRowIds);
+        }
+        setSelectAll(!selectAll);
+    };
+
+    const handleInstall = () => {
+        alert(`${selectedRows.length} rows are being re-installed`);
+        setTimeout(() => {
+            alert(`Re-installation of ${selectedRows.length} rows completed`);
+        }, 4000);
+    };
+
+    const handleDisable = () => {
+        const reason = prompt('Please provide a reason for disabling:');
+        if (reason) {
+            alert(`${selectedRows.length} devices are disabled for reason: ${reason}`);
+            setTimeout(() => {
+                alert(`Disabling of ${selectedRows.length} devices completed`);
+            }, 4000);
+        }
+    };
+
+    const handleDownload = () => {
+        const selectedDevices = deviceData.filter(device => selectedRows.includes(device.id));
+        const blob = new Blob([JSON.stringify(selectedDevices, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'selected_devices.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1>Device Data</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <input
+                                    type="checkbox"
+                                    checked={selectAll}
+                                    onChange={handleSelectAllRows}
+                                />
+                            </th>
+                            <th>
+                                IP Address
+                                <br />
+                                <input
+                                    type="text"
+                                    value={searchIP}
+                                    onChange={(e) => setSearchIP(e.target.value)}
+                                    placeholder="Search IP"
+                                />
+                            </th>
+                            <th>
+                                Site Name
+                                <br />
+                                <input
+                                    type="text"
+                                    value={searchSite}
+                                    onChange={(e) => setSearchSite(e.target.value)}
+                                    placeholder="Search Site"
+                                />
+                            </th>
+                            <th>
+                                Location ID
+                                <br />
+                                <input
+                                    type="text"
+                                    value={searchLocation}
+                                    onChange={(e) => setSearchLocation(e.target.value)}
+                                    placeholder="Search Location"
+                                />
+                            </th>
+                            <th>
+                                Device Type
+                                <br />
+                                <select value={filterDeviceType} onChange={(e) => setFilterDeviceType(e.target.value)}>
+                                    <option value="">All</option>
+                                    <option value="Camera">Camera</option>
+                                    <option value="NVR Panel">NVR Panel</option>
+                                    <option value="Security">Security</option>
+                                    <option value="Alarm Panel">Alarm Panel</option>
+                                </select>
+                            </th>
+                            <th>
+                                Expires In
+                                <br />
+                                <select value={filterExpiresIn} onChange={(e) => setFilterExpiresIn(e.target.value)}>
+                                    <option value="">All</option>
+                                    <option value="<5">&lt;5</option>
+                                    <option value="<10">&lt;10</option>
+                                </select>
+                            </th>
+                            <th>
+                                Installation Status
+                                <br />
+                                <select value={filterInstallStatus} onChange={(e) => setFilterInstallStatus(e.target.value)}>
+                                    <option value="">Select All</option>
+                                    <option value="Failed">Select those failed to install</option>
+                                    <option value="Successful">Select all successful installations</option>
+                                </select>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {displayData.map((device, index) => (
+                            <tr key={index}>
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedRows.includes(device.id)}
+                                        onChange={() => handleSelectRow(device.id)}
+                                    />
+                                </td>
+                                <td>{device.ipAddress}</td>
+                                <td>{device.siteName}</td>
+                                <td>{device.LocationID}</td>
+                                <td>{device.deviceType}</td>
+                                <td>{device.ExpiresIN}</td>
+                                <td>{device.installatonStatus}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div className="pagination">
+                    <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                        &lt;
+                    </button>
+                    <span> Page {currentPage} of {totalPages} </span>
+                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                        &gt;
+                    </button>
+                </div>
+                <footer>
+                    <div className="row-info">
+                        {selectedRows.length} rows selected out of {deviceData.length}
+                    </div>
+                    <div className="footer-buttons">
+                        <button onClick={handleInstall}>Install</button>
+                        <button onClick={handleDownload}>Download</button>
+                        <button onClick={handleDisable}>Disable</button>
+                    </div>
+                    <div className="rows-per-page">
+                        <label htmlFor="rowsPerPage">Rows per page: </label>
+                        <select id="rowsPerPage" value={rowsPerPage} onChange={handleRowsPerPageChange}>
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={15}>15</option>
+                            <option value={20}>20</option>
+                        </select>
+                    </div>
+                </footer>
+            </header>
+        </div>
+    );
+}
+
+export default ManualActn;
+
+
+CSS----------------------------------------------->
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+th input[type="text"],
+th select {
+  width: 80%;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  color: #fff;
+}
+
+label {
+  margin-right: 10px;
+  color: white;
+}
+
+select {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.row-info {
+  color: white;
+}
+
+.footer-buttons button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.footer-buttons button:hover {
+  background-color: #45a049;
+}
+
+.rows-per-page {
+  display: flex;
+  align-items: center;
+}
