@@ -1,0 +1,169 @@
+JS
+
+import React from 'react';
+import { ResponsivePie } from '@nivo/pie';
+import './App.css';
+
+const completedJobs = [
+  { jobName: 'Dejuirf', runStart: '4jfhui', runEnd: 'Fgg', assignedBy: 'ferf', assignedTo: 'Fre', troubleshoot: 'rref', status: 'Erfwer' },
+  { jobName: 'Ruifhuif', runStart: 'Fyfg', runEnd: 'Fjhf', assignedBy: 'Frfr', assignedTo: 'Rfre', troubleshoot: 'Wefe', status: 'Erfw' },
+  { jobName: 'fuihfiu', runStart: 'Ffui', runEnd: 'fff', assignedBy: 'Fr', assignedTo: 'rfer', troubleshoot: 'Rfew', status: 'fefr' },
+];
+
+const activeJobs = [
+  { jobName: 'Frwe', completion: 'rewfre', startTime: 'Rwef', endTime: 'refe', assignedDuration: 'Fwerfr', remarks: 'dcf', assignedBy: 'Cfvf' },
+  { jobName: 'Rfewr', completion: 'Rewf', startTime: 'Frerf', endTime: 'Wfre', assignedDuration: 'Dewd', remarks: 'Dwed', assignedBy: 'Fvv' },
+  { jobName: 'wfrere', completion: 'Rfrfr', startTime: 'fwer', endTime: 'Rewf', assignedDuration: 'edef', remarks: 'Fr4ed', assignedBy: 'rfrfr' },
+];
+
+const data = [
+  { id: '1st Qtr', label: '1st Qtr', value: 40, color: 'hsl(50, 70%, 50%)' },
+  { id: '2nd Qtr', label: '2nd Qtr', value: 20, color: 'hsl(350, 70%, 50%)' },
+  { id: '3rd Qtr', label: '3rd Qtr', value: 10, color: 'hsl(200, 70%, 50%)' },
+  { id: '4th Qtr', label: '4th Qtr', value: 30, color: 'hsl(90, 70%, 50%)' },
+];
+
+const App = () => {
+  return (
+    <div className="App">
+      <h1>JOB SCHEDULER</h1>
+      <div className="icons">
+        <button>📁</button>
+        <button>📅</button>
+        <button>🔄</button>
+        <button>✏️</button>
+      </div>
+      <div className="table-container">
+        <div className="completed-jobs">
+          <h2>Completed Jobs</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Job Name</th>
+                <th>Run Start</th>
+                <th>Run End</th>
+                <th>Assigned by</th>
+                <th>Assigned to</th>
+                <th>Troubleshoot</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {completedJobs.map((job, index) => (
+                <tr key={index}>
+                  <td>{job.jobName}</td>
+                  <td>{job.runStart}</td>
+                  <td>{job.runEnd}</td>
+                  <td>{job.assignedBy}</td>
+                  <td>{job.assignedTo}</td>
+                  <td>{job.troubleshoot}</td>
+                  <td>{job.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="active-jobs">
+          <h2>Active Jobs</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Job Name</th>
+                <th>% of completion</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Assigned Duration</th>
+                <th>Remarks</th>
+                <th>Assigned by</th>
+              </tr>
+            </thead>
+            <tbody>
+              {activeJobs.map((job, index) => (
+                <tr key={index}>
+                  <td>{job.jobName}</td>
+                  <td>{job.completion}</td>
+                  <td>{job.startTime}</td>
+                  <td>{job.endTime}</td>
+                  <td>{job.assignedDuration}</td>
+                  <td>{job.remarks}</td>
+                  <td>{job.assignedBy}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className="charts">
+        <h2>Sales</h2>
+        <div className="chart">
+          <ResponsivePie
+            data={data}
+            margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+            innerRadius={0.5}
+            padAngle={0.7}
+            cornerRadius={3}
+            colors={{ scheme: 'nivo' }}
+            borderWidth={1}
+            borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
+            radialLabelsSkipAngle={10}
+            radialLabelsTextColor="#333333"
+            radialLabelsLinkColor={{ from: 'color' }}
+            sliceLabelsSkipAngle={10}
+            sliceLabelsTextColor="#333333"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
+
+CSS ------------------>
+
+.App {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  margin-bottom: 20px;
+}
+
+.completed-jobs,
+.active-jobs {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.chart {
+  height: 300px;
+}
+
+.charts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
